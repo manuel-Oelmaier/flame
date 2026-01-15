@@ -22,6 +22,8 @@ To get started, clone the `flame` repository and install the required dependenci
 ```bash
 git clone https://github.com/fla-org/flame.git
 cd flame
+python3 -m venv .venv
+source .venv/bin/activate
 pip install .
 ```
 
