@@ -63,7 +63,7 @@ Here's an example of training a 340M FLA Transformer model with a LLaMA-like arc
 ```sh
 NGPU=1 bash train.sh \
   --job.config_file flame/models/fla.toml \
-  --job.dump_folder exp/transformer-340M-4K-10B/batch1.seqlen65536.context4096.warmup1024.update1.steps20480.lr1e-3.cosine \
+  --job.dump_folder exp/transformer-340M-4K-10B/batch1.seqlen8192.context4096.warmup1024.update1.steps20480.lr1e-3.cosine \
   --model.config configs/transformer_340M.json \
   --model.tokenizer_path fla-hub/transformer-1.3B-100B \
   --optimizer.name AdamW \
@@ -73,14 +73,14 @@ NGPU=1 bash train.sh \
   --lr_scheduler.lr_min 0.1 \
   --lr_scheduler.decay_type cosine \
   --training.batch_size 1 \
-  --training.seq_len 16384 \
+  --training.seq_len 8192 \
   --training.context_len 4096 \
   --training.varlen \
   --training.gradient_accumulation_steps 1 \
   --training.steps 2048 \
   --training.max_norm 1.0 \
   --training.skip_nan_inf \
-  --training.dataset HuggingFaceFW/fineweb-edu \
+  --training.dataset ~/Datasets/Huggingface_finewebEdu/my_local_fineweb_10bt \
   --training.dataset_name sample-10BT \
   --training.dataset_split train \
   --training.num_workers 4 \
@@ -91,6 +91,9 @@ NGPU=1 bash train.sh \
   --checkpoint.load_step -1 \
   --checkpoint.keep_latest_k 2 \
   --metrics.log_freq 1
+  --metrics.logger wandb \
+  --metrics.project_name "Metrics_For_Bachelor_thesis" \
+  --metrics.run_name "transformer-340M-experiment"
 ```
 
 You can specify the number of GPUs by setting the environment variable `NGPU`, which defaults to 8.  
