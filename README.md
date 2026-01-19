@@ -80,8 +80,7 @@ NGPU=1 bash train.sh \
   --training.steps 2048 \
   --training.max_norm 1.0 \
   --training.skip_nan_inf \
-  --training.dataset ~/Datasets/Huggingface_finewebEdu/my_local_fineweb_10bt \
-  --training.dataset_name sample-10BT \
+  --training.data_dir ~/Datasets/Huggingface_finewebEdu/my_local_fineweb_10bt \
   --training.dataset_split train \
   --training.num_workers 4 \
   --training.prefetch_factor 2 \
@@ -90,10 +89,8 @@ NGPU=1 bash train.sh \
   --checkpoint.interval 2048 \
   --checkpoint.load_step -1 \
   --checkpoint.keep_latest_k 2 \
-  --metrics.log_freq 1
-  --metrics.logger wandb \
-  --metrics.project_name "Metrics_For_Bachelor_thesis" \
-  --metrics.run_name "transformer-340M-experiment"
+  --metrics.log_freq 1 \
+  --metrics.enable_wandb 1
 ```
 
 You can specify the number of GPUs by setting the environment variable `NGPU`, which defaults to 8.  
