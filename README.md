@@ -60,7 +60,7 @@ Here's an example of training a 340M FLA Transformer model with a LLaMA-like arc
 > For stable training, ensure the dataset is downloaded locally (see [**Dataset Preparation**](#dataset-preparation)). Otherwise, we assume you are only testing the new corpus.
 
 ```sh
-bash train.sh \
+NGPU=1 bash train.sh \
   --job.config_file flame/models/fla.toml \
   --job.dump_folder exp/transformer-340M-4K-10B/batch1.seqlen65536.context4096.warmup1024.update1.steps20480.lr1e-3.cosine \
   --model.config configs/transformer_340M.json \
@@ -76,13 +76,13 @@ bash train.sh \
   --training.context_len 4096 \
   --training.varlen \
   --training.gradient_accumulation_steps 1 \
-  --training.steps 20480 \
+  --training.steps 2048 \
   --training.max_norm 1.0 \
   --training.skip_nan_inf \
   --training.dataset HuggingFaceFW/fineweb-edu \
-  --training.dataset_name sample-100BT \
+  --training.dataset_name sample-10BT \
   --training.dataset_split train \
-  --training.num_workers 32 \
+  --training.num_workers 32 \ # 4 per GPU ?
   --training.prefetch_factor 2 \
   --training.seed 42 \
   --training.compile \
