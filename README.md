@@ -73,7 +73,7 @@ NGPU=1 bash train.sh \
   --lr_scheduler.lr_min 0.1 \
   --lr_scheduler.decay_type cosine \
   --training.batch_size 1 \
-  --training.seq_len 65536 \
+  --training.seq_len 16384 \
   --training.context_len 4096 \
   --training.varlen \
   --training.gradient_accumulation_steps 1 \
