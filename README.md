@@ -29,12 +29,13 @@ pip install .
 
 Install the latest version of fla
 ```
-pip uninstall flash-linear-attention && pip install -U --no-use-pep517 git+https://github.com/fla-org/flash-linear-attention
+pip uninstall flash-linear-attention && pip install -U --no-build-isolation  git+https://github.com/fla-org/flash-linear-attention
 ```
 
 [Important] Install specific version of torchtitan
 ```
 pip install git+https://github.com/pytorch/torchtitan.git@0b44d4c
+# consider also tryo and flash_attn
 ```
 
 
@@ -82,7 +83,7 @@ NGPU=1 bash train.sh \
   --training.dataset HuggingFaceFW/fineweb-edu \
   --training.dataset_name sample-10BT \
   --training.dataset_split train \
-  --training.num_workers 32 \ # 4 per GPU ?
+  --training.num_workers 4 \
   --training.prefetch_factor 2 \
   --training.seed 42 \
   --training.compile \
